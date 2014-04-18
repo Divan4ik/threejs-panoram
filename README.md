@@ -40,7 +40,11 @@ projector.unprojectVector( vector, camera );
 
 raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
 
-var intersects = raycaster.intersectObjects( scene.children );
+
+//var intersects = raycaster.intersectObjects( scene.children );
+// Не забываем что mesh - сфера, тоже часть сцены. отслеживаем массив нужных элементов
+var intersects = raycaster.intersectObjects( custom_elements_array );
+
 
 if ( intersects.length > 0 ) {
 
@@ -61,4 +65,10 @@ if ( intersects.length > 0 ) {
 	INTERSECTED = null;
 
 }
+
+// в обработчик движения мыши
+
+mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
 ```
