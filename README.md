@@ -20,3 +20,42 @@ geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
 					side: THREE.BackSide
 				} );
 ```
+2. Добавляем Raycaster ( компонент для векторных расчетов )
+
+Исходный пример - http://threejs.org/examples/#webgl_interactive_cubes
+
+нам необдимы эти строчки: 
+```javascript
+
+// init()
+projector = new THREE.Projector();
+raycaster = new THREE.Raycaster();
+
+// render() или update()
+var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+projector.unprojectVector( vector, camera );
+
+raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
+
+var intersects = raycaster.intersectObjects( scene.children );
+
+if ( intersects.length > 0 ) {
+
+	if ( INTERSECTED != intersects[ 0 ].object ) {
+
+		if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+
+		INTERSECTED = intersects[ 0 ].object;
+		INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+		INTERSECTED.material.emissive.setHex( 0xff0000 );
+
+	}
+
+} else {
+
+	if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+
+	INTERSECTED = null;
+
+}
+```
