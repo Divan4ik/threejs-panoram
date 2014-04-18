@@ -25,16 +25,18 @@ geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
 Исходный пример - http://threejs.org/examples/#webgl_interactive_cubes
 
 нам необдимы эти строчки: 
+
+#####в global
 ```javascript
-
-//в global
 var mouse = new THREE.Vector2(), INTERSECTED;
-
-// в init()
+```
+##### в init()
+```javascript
 projector = new THREE.Projector();
 raycaster = new THREE.Raycaster();
-
-// в render() или 	в update()
+```
+##### в render() или 	в update()
+```javascript
 var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
 projector.unprojectVector( vector, camera );
 
@@ -65,9 +67,9 @@ if ( intersects.length > 0 ) {
 	INTERSECTED = null;
 
 }
-
-// в обработчик движения мыши
-
+```
+##### в обработчик движения мыши
+```javascript
 mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 
