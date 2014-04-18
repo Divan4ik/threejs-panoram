@@ -5,7 +5,7 @@ threejs-panoram
 
 что изменено?
 
-1. Геометрия сферы не позволяет создавать объекты внутри нее
+#### 1. Геометрия сферы не позволяет создавать объекты внутри нее
 ```javascript
 geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
 ```
@@ -20,18 +20,21 @@ geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
 					side: THREE.BackSide
 				} );
 ```
-2. Добавляем Raycaster ( компонент для векторных расчетов )
+#### 2. Добавляем Raycaster ( компонент для векторных расчетов )
 
 Исходный пример - http://threejs.org/examples/#webgl_interactive_cubes
 
 нам необдимы эти строчки: 
 ```javascript
 
-// init()
+//в global
+var mouse = new THREE.Vector2(), INTERSECTED;
+
+// в init()
 projector = new THREE.Projector();
 raycaster = new THREE.Raycaster();
 
-// render() или update()
+// в render() или 	в update()
 var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
 projector.unprojectVector( vector, camera );
 
