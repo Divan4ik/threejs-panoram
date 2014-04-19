@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -160,7 +159,22 @@
 				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 
 			}
-
+			
+			function createTip(opt) {
+				var d = document,
+				    wrap = d.createDocumentFragment(),
+				    div = d.createElement('div'),
+				    title = d.createElement('span'),
+				    p = d.createElement('p');
+				div.className = 'tip';
+				title.className = 'tip_title';
+				p.className = 'tip_body';
+				title.innerText = opt.title;
+				p.innerText = opt.body;
+				div.appendChild(title);
+				div.appendChild(p);
+				wrap.appendChild(div);
+			}
 
 			function animate() {
 
