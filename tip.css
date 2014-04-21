@@ -1,9 +1,12 @@
+body {
+  font: white 12px/18px Verdana, Tahoma;  
+}
 .tip {
   position:absolute;
 }
 
 .tip-title {
-
+  font-size:1em;
 }
 
 .tip-body {
